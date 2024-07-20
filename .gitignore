@@ -1,0 +1,51 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+youtubeApi/
+Lib/
+Scripts/
+# IDE/editor files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Coverage reports
+.coverage
+*.coverage
+*.coverage.*
+nosetests.xml
+coverage.xml
+
+# Distribution and packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Environment configuration
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# mypy
+.mypy_cache/
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
