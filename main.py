@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
-@app.route("/video/",methods=['POST'])
+@app.route("/video",methods=['POST'])
 def video_quality():
   # check file is empty
   # check extension
@@ -20,13 +20,14 @@ def video_quality():
   if request.method =='POST':
       
     video = request.files['file']
+    if not video:
+      return ApiError("No file found ",400)
     if video.filename=='':
       return ApiError("No file found",400)
     if video.filename[-3:]!="mp4":
       return ApiError("Not correct File format",400)
     
     video.save(os.path.join(app.config['UPLOAD_FOLDER'], video.filename))
-    
     video_resolutions = {
       "1080p": (1920, 1080),
       "720p": (1280, 720),
@@ -41,6 +42,7 @@ def video_quality():
       try:
         input_file = video_filename
         out_file = os.path.join(app.config['UPLOAD_FOLDER'],f"{video.filename[:-4]}_{res}.mp4")
+        # print('save')
         clip = VideoFileClip(input_file)
         resized_clip = clip.resize(dim)
         resized_clip.write_videofile(out_file)
@@ -50,10 +52,10 @@ def video_quality():
         resp[res] = file_uploaded["url"]
         if os.path.exists(out_file):
           os.remove(out_file)
- 
       except Exception as e:
         print(e)
         # return ApiError(e,400)
+    
     if os.path.exists(video_filename):
       os.remove(video_filename)
     return ApiResponse(resp,"success",200)
