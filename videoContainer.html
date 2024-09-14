@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Embed</title>
+</head>
+<body>
+    <!-- Container for the video player -->
+    <div id="custom-video-container"></div>
+
+    <!-- Include the custom video player script -->
+    <script src="video-player.js"></script>
+    <script>
+        // Initialize the video player
+        const videoPlayer = new CustomVideoPlayer('custom-video-container', 'https://path-to-your-video.mp4');
+
+        // Example usage of the API
+        function playVideo() {
+            videoPlayer.play();
+        }
+
+        function pauseVideo() {
+            videoPlayer.pause();
+        }
+
+        function muteVideo() {
+            videoPlayer.mute();
+        }
+
+        document.addEventListener('onPlay', () => {
+            console.log('Video is playing');
+        });
+
+        document.addEventListener('onPause', () => {
+            console.log('Video is paused');
+        });
+
+        document.addEventListener('onEnd', () => {
+            console.log('Video has ended');
+        });
+    </script>
+</body>
+</html>
